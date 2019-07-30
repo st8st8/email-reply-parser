@@ -98,7 +98,7 @@ class EmailMessage(object):
         is_quoted = self.QUOTED_REGEX.match(line) is not None
         is_header = is_quote_header or self.HEADER_REGEX.match(line) is not None
 
-        if self.fragment and len(line.strip()) == 0:
+        if self.fragment and len(line.strip(" >")) == 0:
             if self.SIG_REGEX.match(self.fragment.lines[-1].strip()):
                 self.fragment.signature = True
                 self._finish_fragment()
